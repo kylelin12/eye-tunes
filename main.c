@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "linkedlist.h"
-#include "eyetunes.h"
+#include "./song/song.h"
+#include "./songnode/songnode.h"
+#include "./songlibrary/eyetunes.h"
 
 int main() {
 

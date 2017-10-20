@@ -1,13 +1,13 @@
-test: linkedlist.o eyetunes.o main.o
-	gcc -o test linkedlist.o eyetunes.o main.o
+test: songnode.o eyetunes.o main.o
+	gcc -o test songnode.o eyetunes.o main.o
 
-linkedlist.o: linkedlist.c linkedlist.h
-	gcc -c linkedlist.c
+songnode.o: ./songnode/songnode.c ./songnode/songnode.h
+	gcc -c ./songnode/songnode.c
 
-eyetunes.o: eyetunes.c eyetunes.h
-	gcc -c eyetunes.c
+eyetunes.o: ./songlibrary/eyetunes.c ./songlibrary/eyetunes.h
+	gcc -c ./songlibrary/eyetunes.c
 
-main.o: main.c linkedlist.h eyetunes.h
+main.o: main.c ./song/song.h ./songnode/songnode.h ./songlibrary/eyetunes.h
 	gcc -c main.c
 
 run: test
@@ -15,4 +15,3 @@ run: test
 
 clean:
 	rm *.o
-	rm *~
