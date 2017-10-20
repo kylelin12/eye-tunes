@@ -29,6 +29,10 @@ int main() {
     test2 = songnode_inorder(test2, "Palette", "IU");
     test2 = songnode_inorder(test2, "Father King", "Emancipator");
     songnode_print(test2);
+    printf("Periods in the artist name mode the song to the end\n");
+    test2 = songnode_inorder(test2, "testcast", "Mt. Loo"); // Had issues with periods in names before, testing that
+    test2 = songnode_inorder(test2, "test2", "My Case"); // Periods in the artist name mode the song to the end
+    songnode_print(test2);
 
     // Get
     printf("\nGetting in progress.......\n");
@@ -71,6 +75,8 @@ int main() {
     songlibrary_add("Frosty Fest", "Michita");
     songlibrary_add("Sangrilune", "Birocratic");
     songlibrary_add("Ontario", "Bonobo");
+    songlibrary_add("testcast", "Mt. Loo"); // Had issues with periods in names before, testing that
+    songlibrary_add("test2", "My Case");
     songlibrary_print();
 
     // Getting songs

@@ -9,7 +9,7 @@
 // Returns the alpha-numeric value for the first 
 // letter of the artist's name
 int alpha_num(char *artist) {
-    if ((artist[0] - 'a') < 0)
+    if ((artist[0] >= 'A') && (artist[0] <= 'Z'))
         return artist[0] - 'A';
     else
         return artist[0] - 'a';

@@ -15,7 +15,7 @@ struct SongNode *songnode_new(struct SongNode *next, char *name, char *artist) {
 }
 
 // Returns the length of the SongNode
-// Useful for length of playlists
+// Useful for generating random songs
 int sn_length(struct SongNode *node) {
     int length = 0;
     while (node) {
@@ -28,9 +28,10 @@ int sn_length(struct SongNode *node) {
 // Prints the SongNode
 void songnode_print(struct SongNode *nodelist) {
     printf("\nSONGS:\n");
+    // While nodelist is not NULL
     while (nodelist) {
-        printf("\t%s - \"%s\"\n", nodelist->artist, nodelist->name);
-        nodelist = nodelist->next;
+        printf("\t%s - \"%s\"\n", nodelist->artist, nodelist->name); // Prints in Artist - "Song" format
+        nodelist = nodelist->next; // Moves the pointer to the next node in the list
     }
     printf("END SONGS\n");
 }
@@ -45,16 +46,21 @@ struct SongNode *songnode_infront(struct SongNode *prev, char *name, char *artis
 // By artist name -> by song name
 struct SongNode *songnode_inorder(struct SongNode *nodelist, char *name, char *artist) {
     struct SongNode *beginning = nodelist; // Pointer at the beginning of the give list
+    // If nodelist is not NULL or if the artist comes before or is equal to the first artist in the list
+    // and the song name comes before then add the song to the front of the nodelist
     if (!nodelist || (strcmp(artist, nodelist->artist) < 0) || 
     (strcmp(artist, nodelist->artist) == 0 && strcmp(name, nodelist->name) <= 0)) {
-        return songnode_new(nodelist, name, artist);
+        return songnode_infront(nodelist, name, artist); // Returns a pointer to the new 'front'
     }
+    // While the next node is not NULL and the artist is after the next song's artist
     while (nodelist->next && strcmp(artist, nodelist->next->artist) > 0)
         nodelist = nodelist->next;
+    // While the next node is not NULL and the song name is after the next song's name
     while (nodelist->next && strcmp(name, nodelist->next->name) > 0)
         nodelist = nodelist->next;
+    // Set the pointer for the next node equal to a new node
     nodelist->next = songnode_new(nodelist->next, name, artist);
-    return beginning;
+    return beginning; // Returns a pointer to the beginning of the nodelist
 }
 
 // Find and return a pointer to the requested song
