@@ -9,9 +9,10 @@
 // Returns the alpha-numeric value for the first 
 // letter of the artist's name
 int alpha_num(char *artist) {
+    // If the first letter of the artist is capitalized
     if ((artist[0] >= 'A') && (artist[0] <= 'Z'))
         return artist[0] - 'A';
-    else
+    else // Otherwise, it's lowercase
         return artist[0] - 'a';
 }
 
@@ -36,7 +37,9 @@ struct SongNode *songlibrary_sartist(char *artist) {
 // Prints out all songs with an artist starting with the ltter
 void songlibrary_print_letter(char letter) {
     printf("With the letter: %c", letter);
-    songnode_print(table[letter - 'a']);
+    // letter - 'a' is an index between 0 and 25.
+    // letter itself is not between 0 and 25.
+    songnode_print(table[letter - 'a']); 
 }
 
 // Prints out all songs made by a certain artist
@@ -52,6 +55,7 @@ void songlibrary_print() {
     int count = 0;
     printf("Printing library...\n");
     while (count < 26) {
+        // If the table[count] is not empty, print everything in it
         if (table[count]) {
             printf("Current letter: %c", 'a' + count);
             songnode_print(table[count]);
