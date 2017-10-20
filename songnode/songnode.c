@@ -66,8 +66,10 @@ struct SongNode *songnode_inorder(struct SongNode *nodelist, char *name, char *a
 // Find and return a pointer to the requested song
 struct SongNode *songnode_get_song(struct SongNode *nodelist, char *name, char *artist) {
     while (nodelist) {
+        // If the name and artist of the current song match, return that song's pointer
         if (strcmp(name, nodelist->name) == 0 && strcmp(artist, nodelist->artist) == 0)
             return nodelist;
+        // Otherwise, nodelist becomes a pointer to the next node
         nodelist = nodelist->next;
     }
     return NULL;
@@ -76,21 +78,28 @@ struct SongNode *songnode_get_song(struct SongNode *nodelist, char *name, char *
 // Find and return a pointer to the requested artist
 struct SongNode *songnode_get_artist(struct SongNode *nodelist, char *artist) {
     while (nodelist) {
+        // If the artist matches the given artist, return the current node pointer
         if (strcmp(artist, nodelist->artist) == 0)
             return nodelist;
+        // Otherwise, nodelist becomes a pointer to the next node
         nodelist = nodelist->next;
     }
-    return NULL;
+    return NULL; // Otherwise the song doesn't exist and NULL is returned
 }
 
 // Find and return a pointer to a random song
 struct SongNode *songnode_get_ran(struct SongNode *nodelist) {
+    // Generates a random number between 0 and the length of the list
     int nl_length = sn_length(nodelist);
     int ran_num = rand() % nl_length;
+    // While the random number generated is greater than zero, move the
+    // Pointer to the next node in the nodelist and decrement.
+    // This moves the pointer ran_num-1 nodes into the list
     while (ran_num > 0) {
         nodelist = nodelist->next;
         ran_num--;
     }
+    // Return that
     return nodelist;
 }
 
