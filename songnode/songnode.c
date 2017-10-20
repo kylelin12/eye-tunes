@@ -29,10 +29,10 @@ int sn_length(struct SongNode *node) {
 void songnode_print(struct SongNode *nodelist) {
     printf("\nSONGS:\n");
     while (nodelist) {
-        printf("\t%s - \"%s\"", nodelist->artist, nodelist->name);
+        printf("\t%s - \"%s\"\n", nodelist->artist, nodelist->name);
         nodelist = nodelist->next;
     }
-    printf("\nEND SONGS\n");
+    printf("END SONGS\n");
 }
 
 // Inserts a new SongNode to the beginning of the SongNode (list)

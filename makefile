@@ -7,7 +7,7 @@ songnode.o: ./songnode/songnode.c ./songnode/songnode.h
 eyetunes.o: ./songlibrary/eyetunes.c ./songlibrary/eyetunes.h
 	gcc -c ./songlibrary/eyetunes.c
 
-main.o: main.c ./song/song.h ./songnode/songnode.h ./songlibrary/eyetunes.h
+main.o: main.c ./songnode/songnode.h ./songlibrary/eyetunes.h
 	gcc -c main.c
 
 run: test
